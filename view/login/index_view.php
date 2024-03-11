@@ -26,6 +26,9 @@ if (!defined('ROOT_PATH')) {
 </head>
 
 <body>
+    <?php
+        $state = trim($_GET['state'] ?? null);
+    ?>
     <div class="container-scroller">
         <!-- partial -->
         <div class="container-fluid">
@@ -37,6 +40,11 @@ if (!defined('ROOT_PATH')) {
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title text-center mb-3">Login</h4>
+
+                                    <?php if($state === 'error'): ?>
+                                        <p class="text-center text-danger card-title"> Account invalid </p>
+                                    <?php endif; ?>
+
                                     <form class="forms-sample" action="index.php?c=login&m=handle" method="post">
                                         <div class="form-group">
                                             <label for="username">Username</label>

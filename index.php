@@ -2,6 +2,8 @@
 if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
+require 'helper/Common.php';
+
 define("ROOT_PATH", "index.php");
 
 if(file_exists("route/web.php")){

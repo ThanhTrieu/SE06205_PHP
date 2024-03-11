@@ -7,8 +7,11 @@ $c = ucfirst($c); // viet hoa chu cai dau
 switch($c){
     case 'Login':
         require "controller/LoginController.php";
-    break;
+        break;
+    case 'Dashboard':
+        require "controller/DashboardController.php";
+        break;
     default:
         require "controller/LoginController.php";
-    break;
+        break;
 }
