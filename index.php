@@ -3,6 +3,7 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 require 'helper/Common.php';
+require 'helper/CheckLoginUserHelper.php';
 
 define("ROOT_PATH", "index.php");
 

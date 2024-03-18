@@ -18,5 +18,5 @@ function index(){
         header("Location:index.php");
         exit();
     }
-    require 'view/dashboard/index_view.php';
+    require 'view/department/index_view.php';
 }

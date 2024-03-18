@@ -6,8 +6,12 @@ if (!defined('ROOT_PATH')) {
 
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="public/assets/images/logo.svg" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="public/assets/images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo" href="index.php?c=dashboard">
+            <img src="public/assets/images/btec.svg" alt="logo" />
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="dashboard">
+            <img src="public/assets/images/btec.svg" alt="logo" />
+        </a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -40,8 +44,11 @@ if (!defined('ROOT_PATH')) {
                     <a class="dropdown-item" href="#">
                         <i class="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                    <form method="post" action="index.php?c=login&m=logout">
+                        <button class="dropdown-item" type="submit" name="btnLogout">
+                            <i class="mdi mdi-logout me-2 text-primary"></i> Signout 
+                        </button>
+                    </form>
                 </div>
             </li>
             <li class="nav-item d-none d-lg-block full-screen-link">

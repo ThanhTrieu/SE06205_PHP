@@ -2,7 +2,7 @@
 if (!defined('ROOT_PATH')) {
     die('Can not access');
 }
-$titlePage = "Btec - Dashboard";
+$titlePage = "Btec - Department";
 ?>
 <?php require 'view/partials/header_view.php'; ?>
 
@@ -10,7 +10,7 @@ $titlePage = "Btec - Dashboard";
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
             <i class="mdi mdi-home"></i>
-        </span> Dashboard
+        </span> Department
     </h3>
     <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
@@ -22,7 +22,7 @@ $titlePage = "Btec - Dashboard";
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-12">
-        <h5>This is Dashboard</h5>
+        <h5>This is Department page !</h5>
     </div>
 </div>
 

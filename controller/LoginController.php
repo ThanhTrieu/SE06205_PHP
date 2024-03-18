@@ -11,9 +11,20 @@ switch($m){
     case 'handle':
         handleLogin();
         break;
+    case 'logout':
+        handleLogout();
+        break;
     default:
         index();
         break;
+}
+function handleLogout(){
+    if(isset($_POST['btnLogout'])){
+        // huy cac session
+        session_destroy();
+        // quay ve trang dang nhap
+        header("Location:index.php");
+    }
 }
 function handleLogin(){
     // kiem tra nguoi dung bam submit login chua ?
@@ -43,6 +54,9 @@ function handleLogin(){
     }
 }
 function index(){
-
+    if(isLoginUser()){
+        header("Location:index.php?c=dashboard");
+        exit();
+    }
     require "view/login/index_view.php";
 }
