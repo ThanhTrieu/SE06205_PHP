@@ -2,6 +2,8 @@
 if (!defined('ROOT_PATH')) {
     die('Can not access');
 }
+$modulePage = trim($_GET['c'] ?? null);
+$modulePage = strtolower($modulePage);
 ?>
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -22,13 +24,13 @@ if (!defined('ROOT_PATH')) {
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item <?= $modulePage === 'dashboard' ? 'active' : null; ?> ">
             <a class="nav-link" href="index.php?c=dashboard">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <?= $modulePage === 'department' ? 'active' : null; ?>">
             <a class="nav-link" href="index.php?c=department">
                 <span class="menu-title">Departments</span>
                 <i class="mdi mdi-contacts menu-icon"></i>

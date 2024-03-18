@@ -22,7 +22,7 @@ $titlePage = "Btec - Department";
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-12">
-        <h5>This is Department page !</h5>
+        <a class="btn btn-primary" href="index.php?c=department&m=add"> Add Department</a>
     </div>
 </div>
 
