@@ -6,6 +6,7 @@
 function connectionDb(){
     try {
         $dbh = new PDO('mysql:host=localhost;dbname=students_manager;charset=utf8', 'root', '');
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $dbh; // tra ve bien ket noi.
     } catch (PDOException $e) {
         // attempt to retry the connection after some timeout for example

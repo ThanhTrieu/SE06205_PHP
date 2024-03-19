@@ -4,6 +4,7 @@ if(session_status() == PHP_SESSION_NONE){
 }
 require 'helper/Common.php';
 require 'helper/CheckLoginUserHelper.php';
+require 'helper/UploadFileHelper.php';
 
 define("ROOT_PATH", "index.php");
 
