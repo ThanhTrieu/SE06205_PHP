@@ -16,10 +16,51 @@ switch($m){
     case 'handle-add':
         handleAdd();
         break;
-    
+    case 'delete':
+        handleDelete();
+        break;
+    case 'edit':
+        edit();
+        break;
     default:
         index();
         break;
+}
+function edit(){
+    // phai dang nhap moi duoc su dung chuc nang nay.
+    if(!isLoginUser()){
+        header("Location:index.php");
+        exit();
+    }
+    $id = trim($_GET['id'] ?? null);
+    $id = is_numeric($id) ? $id : 0; // is_numeric : kiem tra co phai la so hay ko ?
+    $info = getDetailDepartmentById($id); // goi ham trong model
+    if(!empty($info)){
+        // co du lieu trong database
+        // hien thi giao dien - thong tin chi tiet du lieu
+        require 'view/department/edit_view.php';
+    } else {
+        // khong co du lieu trong database
+        // thong bao 1 giao dien loi
+        require 'view/error_view.php';
+    }
+}
+function handleDelete(){
+    // phai dang nhap moi duoc su dung chuc nang nay.
+    if(!isLoginUser()){
+        header("Location:index.php");
+        exit();
+    }
+    $id = trim($_GET['id'] ?? null);
+    $id = is_numeric($id) ? $id : 0;
+    $delete = deleteDepartmentById($id); // goi ten ham trong model
+    if($delete){
+        // xoa thanh cong
+        header("Location:index.php?c=department&state_del=success");
+    } else {
+        // xoa that bai
+        header("Location:index.php?c=department&state_del=failure");
+    }
 }
 function handleAdd(){
     if(isset($_POST['btnSave'])){

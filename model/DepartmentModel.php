@@ -1,6 +1,40 @@
 <?php
 require "database/database.php";
 
+function getDetailDepartmentById($id = 0){
+    $sql = "SELECT * FROM `departments` WHERE `id` = :id AND `deleted_at` IS NULL";
+    $db = connectionDb();
+    $data = [];
+    $stmt = $db->prepare($sql);
+    if($stmt){
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if($stmt->execute()){
+            if($stmt->rowCount() > 0){
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+        }
+    }
+    disconnectDb($db);
+    return $data;
+}
+
+function deleteDepartmentById($id = 0){
+    $sql = "UPDATE `departments` SET `deleted_at` = :deleted_at WHERE `id` = :id";
+    $db = connectionDb();
+    $checkDelete = false;
+    $deleteTime = date("Y-m-d H:i:s");
+    $stmt = $db->prepare($sql);
+    if($stmt){
+        $stmt->bindParam(':deleted_at', $deleteTime, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if($stmt->execute()){
+            $checkDelete = true;
+        }
+    }
+    disconnectDb($db);
+    return $checkDelete;
+}
+
 function getAllDataDepartments(){
     $sql = "SELECT * FROM `departments` WHERE `deleted_at` IS NULL";
     $db = connectionDb();
