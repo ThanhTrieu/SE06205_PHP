@@ -50,7 +50,7 @@ function handleAdd(){
         // xu ly upload logo
         $logo = null;
         $_SESSION['error_add_department']['logo'] = null;
-        if(!empty($_FILES['logo'])){
+        if(!empty($_FILES['logo']['tmp_name'])){
             $logo = uploadFile(
                 $_FILES['logo'],
                 'public/uploads/images/',
@@ -76,7 +76,7 @@ function handleAdd(){
         if(!$flagCheckingError){
             // tien hanh insert vao database
             $slug = slug_string($name);
-            $insert = insertDepartment($name, $slug, $leader, $status, $beginningDate);
+            $insert = insertDepartment($name, $slug, $leader, $status, $logo, $beginningDate);
             if($insert){
                 header("Location:index.php?c=department&state=success");
             } else {

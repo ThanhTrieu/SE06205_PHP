@@ -1,9 +1,9 @@
 <?php
 require "database/database.php";
 
-function insertDepartment($name, $slug, $leader, $status, $beginDate){
+function insertDepartment($name, $slug, $leader, $status, $logo, $beginDate){
     // viet cau lenh sql insert vao bang department
-    $sqlInsert = "INSERT INTO `departments`(`name`,`slug`,`leader`,`date_beginning`,`status`,`created_at`) VALUES(:nameDepartment, :slug, :leader, :beginDate, :statusDepartment, :createdAt)";
+    $sqlInsert = "INSERT INTO `departments`(`name`,`slug`,`leader`,`date_beginning`,`status`, `logo`,`created_at`) VALUES(:nameDepartment, :slug, :leader, :beginDate, :statusDepartment, :logo, :createdAt)";
     $checkInsert = false;
     $db = connectionDb();
     $stmt = $db->prepare($sqlInsert);
@@ -14,6 +14,7 @@ function insertDepartment($name, $slug, $leader, $status, $beginDate){
         $stmt->bindParam(':leader', $leader, PDO::PARAM_STR);
         $stmt->bindParam(':beginDate', $beginDate, PDO::PARAM_STR);
         $stmt->bindParam(':statusDepartment', $status, PDO::PARAM_INT);
+        $stmt->bindParam(':logo', $logo, PDO::PARAM_STR);
         $stmt->bindParam(':createdAt', $currentDate, PDO::PARAM_STR);
         if($stmt->execute()){
             $checkInsert = true;
