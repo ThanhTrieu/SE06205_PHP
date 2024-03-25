@@ -16,6 +16,7 @@ switch($m){
     case 'handle-add':
         handleAdd();
         break;
+    
     default:
         index();
         break;
@@ -98,5 +99,8 @@ function index(){
         header("Location:index.php");
         exit();
     }
+
+    $departments = getAllDataDepartments(); // goi ten ham trong model
+
     require 'view/department/index_view.php';
 }

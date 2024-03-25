@@ -23,6 +23,42 @@ $titlePage = "Btec - Department";
 <div class="row">
     <div class="col-sm-12 col-md-12">
         <a class="btn btn-primary" href="index.php?c=department&m=add"> Add Department</a>
+        <table class="table table-bordered table-striped my-3">
+            <thead class="table-primary">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Logo</th>
+                <th>Leader</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th colspan="2" class="text-center" width="10%">Action</th>
+            </thead>
+            <tbody>
+                <?php foreach($departments as $key => $item): ?>
+                    <tr>
+                        <td><?= $item['id']; ?></td>
+                        <td><?= $item['name']; ?></td>
+                        <td width="10%">
+                            <img
+                                style="width: 100%; height: 100%;"
+                                class="img-fluid"
+                                alt="<?= $item['name'] ?>"
+                                src="public/uploads/images/<?= $item['logo']; ?>"
+                            />
+                        </td>
+                        <td><?= $item['leader']; ?></td>
+                        <td><?= date('d-m-Y', strtotime($item['date_beginning'])); ?></td>
+                        <td><?= $item['status'] == 1 ? 'Active' : 'Deactive'; ?></td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="index.php?c=department&m=edit&id=<?= $item['id']; ?>"> Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" href="index.php?c=department&m=delete&id=<?= $item['id']; ?>"> Delete</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
