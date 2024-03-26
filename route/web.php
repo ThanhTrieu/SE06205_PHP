@@ -14,6 +14,9 @@ switch($c){
     case 'Department':
         require "controller/DepartmentController.php";
         break;
+    case 'Courses':
+        require "controller/CoursesController.php";
+        break;
     default:
         require "controller/LoginController.php";
         break;

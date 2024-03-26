@@ -223,8 +223,9 @@ function index(){
         header("Location:index.php");
         exit();
     }
-
-    $departments = getAllDataDepartments(); // goi ten ham trong model
+    $keyword = trim($_GET['search'] ?? null);
+    $keyword = strip_tags($keyword);
+    $departments = getAllDataDepartments($keyword); // goi ten ham trong model
 
     require 'view/department/index_view.php';
 }

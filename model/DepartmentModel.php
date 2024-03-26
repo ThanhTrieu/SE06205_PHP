@@ -66,12 +66,15 @@ function deleteDepartmentById($id = 0){
     return $checkDelete;
 }
 
-function getAllDataDepartments(){
-    $sql = "SELECT * FROM `departments` WHERE `deleted_at` IS NULL";
+function getAllDataDepartments($keyword = null){
+    $key = "%{$keyword}%";
+    $sql = "SELECT * FROM `departments` WHERE (`name` LIKE :nameDepartment OR `leader` LIKE :leader ) AND `deleted_at` IS NULL";
     $db = connectionDb();
     $stmt = $db->prepare($sql);
     $data = [];
     if($stmt){
+        $stmt->bindParam(':nameDepartment', $key, PDO::PARAM_STR);
+        $stmt->bindParam(':leader', $key, PDO::PARAM_STR);
         if($stmt->execute()){
             if($stmt->rowCount() > 0){
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

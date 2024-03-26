@@ -36,7 +36,7 @@ $modulePage = strtolower($modulePage);
                 <i class="mdi mdi-contacts menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <?= $modulePage === 'courses' ? 'active' : null; ?>">
             <a class="nav-link" href="index.php?c=courses">
                 <span class="menu-title">Courses</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
