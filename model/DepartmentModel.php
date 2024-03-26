@@ -1,6 +1,37 @@
 <?php
 require "database/database.php";
 
+function updateDepartmentById(
+    $name,
+    $slug,
+    $leader,
+    $status,
+    $beginDate,
+    $logo,
+    $id
+){
+    $checkUpdate = false;
+    $db = connectionDb();
+    $sql = "UPDATE `departments` SET `name` = :nameDepartment, `slug` = :slug, `leader` = :leader, `date_beginning` = :beginDate, `status` = :statusDepartment, `logo` = :logo, `updated_at` = :updated_at WHERE `id` = :id AND `deleted_at` IS NULL";
+    $updateTime = date('Y-m-d H:i:s');
+    $stmt = $db->prepare($sql);
+    if($stmt){
+        $stmt->bindParam(':nameDepartment', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':slug', $slug, PDO::PARAM_STR);
+        $stmt->bindParam(':leader', $leader, PDO::PARAM_STR);
+        $stmt->bindParam(':beginDate', $beginDate, PDO::PARAM_STR);
+        $stmt->bindParam(':statusDepartment', $status, PDO::PARAM_INT);
+        $stmt->bindParam(':logo', $logo, PDO::PARAM_STR);
+        $stmt->bindParam(':updated_at', $updateTime, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        if($stmt->execute()){
+            $checkUpdate = true;
+        }
+    }
+    disconnectDb($db);
+    return $checkUpdate;
+}
+
 function getDetailDepartmentById($id = 0){
     $sql = "SELECT * FROM `departments` WHERE `id` = :id AND `deleted_at` IS NULL";
     $db = connectionDb();

@@ -3,6 +3,7 @@ if (!defined('ROOT_PATH')) {
     die('Can not access');
 }
 $titlePage = "Btec - Department";
+$state = trim($_GET['state'] ?? null);
 ?>
 <?php require 'view/partials/header_view.php'; ?>
 
@@ -23,6 +24,11 @@ $titlePage = "Btec - Department";
 <div class="row">
     <div class="col-sm-12 col-md-12">
         <a class="btn btn-primary" href="index.php?c=department&m=add"> Add Department</a>
+        <?php if($state === 'success'): ?>
+            <div class="my-3 text-success text-center">
+                Action Successfully !
+            </div>
+        <?php endif; ?>
         <table class="table table-bordered table-striped my-3">
             <thead class="table-primary">
                 <th>ID</th>

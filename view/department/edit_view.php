@@ -29,7 +29,7 @@ $errorUpdate  = $_SESSION['error_update_department'] ?? null;
                 <h5 class="card-title text-white"> Update Department</h5>
             </div>
             <div class="card-body">
-                <form enctype="multipart/form-data" method="post" action="index.php?c=department&m=handle-edit&id=">
+                <form enctype="multipart/form-data" method="post" action="index.php?c=department&m=handle-edit&id=<?= $info['id']; ?>">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group mb-3">
