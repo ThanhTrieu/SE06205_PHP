@@ -225,7 +225,20 @@ function index(){
     }
     $keyword = trim($_GET['search'] ?? null);
     $keyword = strip_tags($keyword);
-    $departments = getAllDataDepartments($keyword); // goi ten ham trong model
-
+    $page = trim($_GET['page'] ?? null);
+    $page = (is_numeric($page) && $page > 0) ? $page : 1;
+    $linkPage = createLink([
+        'c' => 'department',
+        'm' => 'index',
+        'page' => '{page}',
+        'search' => $keyword
+    ]);
+    $totalItems = getAllDataDepartments($keyword); // goi ten ham trong model
+    $totalItems = count($totalItems);
+    // departments
+    $panigate = pagigate($linkPage, $totalItems, $page, $keyword, 2);
+    $start = $panigate['start'] ?? 0;
+    $departments = getAllDataDepartmentsByPage($keyword, $start, 2);
+    $htmlPage = $panigate['pagination'] ?? null;
     require 'view/department/index_view.php';
 }

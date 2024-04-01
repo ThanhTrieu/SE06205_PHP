@@ -67,14 +67,35 @@ function deleteDepartmentById($id = 0){
 }
 
 function getAllDataDepartments($keyword = null){
+    $db   = connectionDb();
+    $key  = "%{$keyword}%";
+    $sql  = "SELECT * FROM `departments` WHERE (`name` LIKE :nameDepartment OR `leader` LIKE :leader ) AND `deleted_at` IS NULL";
+    $stmt = $db->prepare($sql);
+    $data = [];
+    if($stmt){
+        $stmt->bindParam(':nameDepartment', $key, PDO::PARAM_STR);
+        $stmt->bindParam(':leader', $key, PDO::PARAM_STR);
+        if($stmt->execute()){
+            if($stmt->rowCount() > 0){
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+    }
+    disconnectDb($db);
+    return $data;
+}
+
+function getAllDataDepartmentsByPage($keyword = null, $start = 0, $limit = 2){
     $key = "%{$keyword}%";
-    $sql = "SELECT * FROM `departments` WHERE (`name` LIKE :nameDepartment OR `leader` LIKE :leader ) AND `deleted_at` IS NULL";
+    $sql = "SELECT * FROM `departments` WHERE (`name` LIKE :nameDepartment OR `leader` LIKE :leader ) AND `deleted_at` IS NULL  LIMIT :startData, :limitData";
     $db = connectionDb();
     $stmt = $db->prepare($sql);
     $data = [];
     if($stmt){
         $stmt->bindParam(':nameDepartment', $key, PDO::PARAM_STR);
         $stmt->bindParam(':leader', $key, PDO::PARAM_STR);
+        $stmt->bindParam(':startData', $start, PDO::PARAM_INT);
+        $stmt->bindParam(':limitData', $limit, PDO::PARAM_INT);
         if($stmt->execute()){
             if($stmt->rowCount() > 0){
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

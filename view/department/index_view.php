@@ -74,6 +74,8 @@ $state = trim($_GET['state'] ?? null);
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <!-- phan trang du lieu -->
+        <?= $htmlPage; ?>
     </div>
 </div>
 
