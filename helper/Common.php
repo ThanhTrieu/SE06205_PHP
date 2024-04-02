@@ -88,7 +88,7 @@ if(!function_exists('pagigate')){
         $totalPage = ceil($totalItem / $limit);
         // ceil : lam tron so len
         // kiem tra lai tham so $page
-        if($page < 1){
+        if($page < 1 || $totalPage == 0){
             $page = 1;
         } elseif($page > $totalPage){
             $page = $totalPage;
